@@ -7,18 +7,28 @@ import {
   refreshUsersSession,
 } from '../services/auth.js';
 
+import { UsersCollection } from '../db/models/users.js';
+
 export const registerUserController = async (req, res) => {
   const user = await registerUser(req.body);
+  const session = await loginUser({
+    email: req.body.email,
+    password: req.body.password,
+  });
 
   res.status(201).json({
     status: 201,
     message: 'User registered successfully!',
-    data: user,
+    data: {
+      user,
+      accessToken: session.accessToken,
+    },
   });
 };
 
 export const loginUserController = async (req, res) => {
   const session = await loginUser(req.body);
+  const user = await UsersCollection.findById(session.userId);
 
   res.cookie('refreshToken', session.refreshToken, {
     httpOnly: true,
@@ -33,6 +43,7 @@ export const loginUserController = async (req, res) => {
     status: 200,
     message: 'User logged in successfully!',
     data: {
+      user,
       accessToken: session.accessToken,
     },
   });
@@ -65,6 +76,7 @@ export const refreshUserSessionController = async (req, res) => {
     sessionId: req.cookies.sessionId,
     refreshToken: req.cookies.refreshToken,
   });
+  const user = await UsersCollection.findById(session.userId);
 
   setupSession(res, session);
 
@@ -72,6 +84,7 @@ export const refreshUserSessionController = async (req, res) => {
     status: 200,
     message: 'Session refreshed successfully!',
     data: {
+      user,
       accessToken: session.accessToken,
     },
   });

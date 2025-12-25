@@ -2,10 +2,22 @@ import bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
 import createHttpError from 'http-errors';
 
-import { UsersCollection } from '../db/models/user.js';
+import { UsersCollection } from '../db/models/users.js';
 import { SessionsCollection } from '../db/models/session.js';
 
 import { TIMER } from '../constants/index.js';
+
+const createSession = () => {
+  const accessToken = randomBytes(30).toString('base64');
+  const refreshToken = randomBytes(30).toString('base64');
+
+  return {
+    accessToken,
+    refreshToken,
+    accessTokenValidUntil: new Date(Date.now() + TIMER.FIFTEEN_MINUTES),
+    refreshTokenValidUntil: new Date(Date.now() + TIMER.ONE_DAY),
+  };
+};
 
 export const registerUser = async (payload) => {
   const user = await UsersCollection.findOne({ email: payload.email });
@@ -46,18 +58,6 @@ export const loginUser = async (payload) => {
 
 export const logoutUser = async (sessionId) => {
   await SessionsCollection.deleteOne({ _id: sessionId });
-};
-
-const createSession = () => {
-  const accessToken = randomBytes(30).toString('base64');
-  const refreshToken = randomBytes(30).toString('base64');
-
-  return {
-    accessToken,
-    refreshToken,
-    accessTokenValidUntil: new Date(Date.now() + TIMER.FIFTEEN_MINUTES),
-    refreshTokenValidUntil: new Date(Date.now() + TIMER.ONE_DAY),
-  };
 };
 
 export const refreshUsersSession = async ({ sessionId, refreshToken }) => {
