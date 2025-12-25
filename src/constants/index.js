@@ -26,8 +26,11 @@ export const BLOOD_TYPE = {
 };
 
 // 15 day
-export const SESSION_DURATION = 15 * 24 * 60 * 60 * 1000;
-export const ACCESS_TOKEN_DURATION = 15 * 60 * 1000; // 15 minutes
+export const TIMER = {
+  FIFTEEN_MINUTES: 15 * 60 * 1000,
+  ONE_DAY: 24 * 60 * 60 * 1000,
+  FIFTEEN_DAYS: 15 * 24 * 60 * 60 * 1000,
+};
 
 // default values
 export const DEFAULT_VALUES = {

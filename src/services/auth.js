@@ -5,7 +5,7 @@ import createHttpError from 'http-errors';
 import { UsersCollection } from '../db/models/user.js';
 import { SessionsCollection } from '../db/models/session.js';
 
-import { ACCESS_TOKEN_DURATION, SESSION_DURATION } from '../constants/index.js';
+import { TIMER } from '../constants/index.js';
 
 export const registerUser = async (payload) => {
   const user = await UsersCollection.findOne({ email: payload.email });
@@ -39,8 +39,8 @@ export const loginUser = async (payload) => {
     userId: user._id,
     accessToken,
     refreshToken,
-    accessTokenValidUntil: new Date(Date.now() + ACCESS_TOKEN_DURATION),
-    refreshTokenValidUntil: new Date(Date.now() + SESSION_DURATION),
+    accessTokenValidUntil: new Date(Date.now() + TIMER.FIFTEEN_MINUTES),
+    refreshTokenValidUntil: new Date(Date.now() + TIMER.ONE_DAY),
   });
 };
 
@@ -55,8 +55,8 @@ const createSession = () => {
   return {
     accessToken,
     refreshToken,
-    accessTokenValidUntil: new Date(Date.now() + ACCESS_TOKEN_DURATION),
-    refreshTokenValidUntil: new Date(Date.now() + SESSION_DURATION),
+    accessTokenValidUntil: new Date(Date.now() + TIMER.FIFTEEN_MINUTES),
+    refreshTokenValidUntil: new Date(Date.now() + TIMER.ONE_DAY),
   };
 };
 
