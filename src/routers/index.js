@@ -5,7 +5,7 @@ import authRouter from './auth.js';
 
 import caloriesRouter from './calories.js';
 import diaryRouter from './diary.js';
-// import productsRouter from './products.js';
+import productsRouter from './products.js';
 
 const router = Router();
 
@@ -14,6 +14,6 @@ const router = Router();
 router.use('/auth', authRouter);
 router.use('/calories', caloriesRouter);
 router.use('/diary', diaryRouter);
-// router.use('/products', productsRouter);
+router.use('/products', productsRouter);
 
 export default router;
