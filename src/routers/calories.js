@@ -1,5 +1,5 @@
 import { Router } from 'express';
-//import { authenticate } from '../middlewares/';
+import { authenticate } from '../middlewares/authenticate.js';
 import {
   getCalorieController,
   setCaloriePrivateController,
@@ -11,9 +11,7 @@ const router = Router();
 
 router.post('/public', getCalorieController);
 
-//router.use(authenticate);
-
-router.post('/private', ctrlWrapper(setCaloriePrivateController));
-router.get('/private', ctrlWrapper(getCaloriePrivateController));
+router.post('/private', authenticate, ctrlWrapper(setCaloriePrivateController));
+router.get('/private', authenticate, ctrlWrapper(getCaloriePrivateController));
 
 export default router;

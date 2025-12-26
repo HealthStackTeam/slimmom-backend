@@ -21,7 +21,7 @@ export const getCalorieController = async (req, res, next) => {
 
 export const setCaloriePrivateController = async (req, res, next) => {
   const { weight, height, targetWeight, age, gender, bloodType } = req.body;
-  const userId = '123';
+  const userId = req.user.id;
 
   const foods = await getProductsBlood(bloodTypeFunc(bloodType));
 
@@ -49,7 +49,7 @@ export const setCaloriePrivateController = async (req, res, next) => {
 };
 
 export const getCaloriePrivateController = async (req, res, next) => {
-  const userId = '123';
+  const userId = req.user.id;
   const data = await getCalorieUser(userId);
 
   res.json({
