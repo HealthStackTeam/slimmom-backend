@@ -7,12 +7,31 @@ import {
 } from '../controllers/diary.js';
 import { authenticate } from '../middlewares/authenticate.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
+import { validateBody } from '../middlewares/validateBody.js';
+import {
+  getDiarySchema,
+  createDiarySchema,
+  delDiarySchema,
+} from '../validation/diary.js';
+
 const router = Router();
 
 router.use(authenticate);
 
-router.get('/', ctrlWrapper(getDailyFoodController));
-router.post('/', ctrlWrapper(addDailyFoodController));
-router.delete('/', ctrlWrapper(delDailyFoodController));
+router.get(
+  '/',
+  validateBody(getDiarySchema),
+  ctrlWrapper(getDailyFoodController),
+);
+router.post(
+  '/',
+  validateBody(createDiarySchema),
+  ctrlWrapper(addDailyFoodController),
+);
+router.delete(
+  '/',
+  validateBody(delDiarySchema),
+  ctrlWrapper(delDailyFoodController),
+);
 
 export default router;

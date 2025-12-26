@@ -1,12 +1,24 @@
 import { DiaryCollection } from '../db/models/diaries.js';
 
-export const getProductsUser = async (userId, date) => {
-  const products = await DiaryCollection.find({ userId, date });
+export const getProductsUser = async (payload) => {
+  const products = await DiaryCollection.find(payload);
   return products;
 };
 
 export const addProductUser = async (payload) => {
-  const product = await DiaryCollection.create(payload);
+  const product = await DiaryCollection.findOneAndUpdate(
+    {
+      date: payload.date,
+      productId: payload.productId,
+      userId: payload.userId,
+    },
+    { $inc: { weight: payload.weight } },
+    {
+      upsert: true,
+      new: true,
+      setDefaultsOnInsert: true,
+    },
+  );
   return product;
 };
 
