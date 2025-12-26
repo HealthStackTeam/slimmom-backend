@@ -5,20 +5,20 @@ const diarySchema = new Schema(
     productId: {
       type: Schema.Types.ObjectId,
       ref: 'product',
-      required: false,
+      required: true,
     },
     weight: {
       type: Number,
-      required: false,
+      required: true,
     },
     date: {
-      type: Date,
-      required: false,
+      type: String,
+      required: true,
     },
     userId: {
       type: Schema.Types.ObjectId,
-      ref: 'user',
-      required: false,
+      ref: 'users',
+      required: true,
     },
   },
   {

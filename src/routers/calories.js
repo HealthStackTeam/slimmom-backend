@@ -1,9 +1,19 @@
 import { Router } from 'express';
-
-import { getCalorieController } from '../controllers/calorie.js';
+//import { authenticate } from '../middlewares/';
+import {
+  getCalorieController,
+  setCaloriePrivateController,
+  getCaloriePrivateController,
+} from '../controllers/calorie.js';
+import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 
 const router = Router();
 
 router.post('/public', getCalorieController);
+
+//router.use(authenticate);
+
+router.post('/private', ctrlWrapper(setCaloriePrivateController));
+router.get('/private', ctrlWrapper(getCaloriePrivateController));
 
 export default router;
