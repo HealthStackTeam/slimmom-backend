@@ -7,7 +7,7 @@ import {
 export const getDailyFoodController = async (req, res, next) => {
   const userId = req.user.id;
   const { date } = req.body;
-  const foods = await getProductsUser(userId, date);
+  const foods = await getProductsUser({ userId, date });
 
   res.json({
     status: 200,
@@ -18,7 +18,8 @@ export const getDailyFoodController = async (req, res, next) => {
 
 export const addDailyFoodController = async (req, res, next) => {
   const userId = req.user.id;
-  const food = await addProductUser({ ...req.body, userId });
+  const { date } = req.body;
+  const food = await addProductUser({ ...req.body, userId, date });
 
   res.json({
     status: 201,

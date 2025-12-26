@@ -20,18 +20,18 @@ export const startServer = () => {
   app.use(cors());
 
   // logger middleware
-  // app.use(
-  //   pino({
-  //     transport: {
-  //       target: 'pino-pretty',
-  //       options: {
-  //         colorize: true,
-  //         translateTime: 'SYS:standard',
-  //         ignore: 'pid,hostname',
-  //       },
-  //     },
-  //   }),
-  // );
+  app.use(
+    pino({
+      transport: {
+        target: 'pino-pretty',
+        options: {
+          colorize: true,
+          translateTime: 'SYS:standard',
+          ignore: 'pid,hostname',
+        },
+      },
+    }),
+  );
 
   // health check endpoint
   app.get('/', (req, res) => {
