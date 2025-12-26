@@ -5,7 +5,9 @@ import {
 } from '../services/daily.js';
 
 export const getDailyFoodController = async (req, res, next) => {
-  const foods = await getProductsUser();
+  const userId = req.user.id;
+  const { date } = req.body;
+  const foods = await getProductsUser(userId, date);
 
   res.json({
     status: 200,
@@ -15,7 +17,8 @@ export const getDailyFoodController = async (req, res, next) => {
 };
 
 export const addDailyFoodController = async (req, res, next) => {
-  const food = await addProductUser({ ...req.body });
+  const userId = req.user.id;
+  const food = await addProductUser({ ...req.body, userId });
 
   res.json({
     status: 201,
@@ -26,8 +29,9 @@ export const addDailyFoodController = async (req, res, next) => {
 
 export const delDailyFoodController = async (req, res, next) => {
   const { dailyId } = req.body;
+  const userId = req.user.id;
 
-  const food = await delProductUser(dailyId);
+  const food = await delProductUser(dailyId, userId);
 
   if (!food) {
     res.json({
