@@ -10,7 +10,7 @@ export const getProductsBloodController = async (req, res, next) => {
 };
 
 export const getProductsController = async (req, res, next) => {
-  const search = req.params.search;
+  const search = req.query.search;
   const data = await getSearchProducts(search);
   res.json({
     status: 200,

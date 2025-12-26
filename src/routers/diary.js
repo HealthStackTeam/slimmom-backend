@@ -5,11 +5,14 @@ import {
   addDailyFoodController,
   delDailyFoodController,
 } from '../controllers/diary.js';
-
+//import { authenticate } from '../middlewares/authenticate.js';
+import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 const router = Router();
 
-router.get('/', getDailyFoodController);
-router.post('/', addDailyFoodController);
-router.delete('/', delDailyFoodController);
+//router.use(authenticate);
+
+router.get('/', ctrlWrapper(getDailyFoodController));
+router.post('/', ctrlWrapper(addDailyFoodController));
+router.delete('/', ctrlWrapper(delDailyFoodController));
 
 export default router;
