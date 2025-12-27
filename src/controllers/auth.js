@@ -16,6 +16,8 @@ export const registerUserController = async (req, res) => {
     password: req.body.password,
   });
 
+  setupSession(res, session);
+
   res.status(201).json({
     status: 201,
     message: 'User registered successfully!',
