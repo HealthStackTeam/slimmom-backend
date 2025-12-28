@@ -7,7 +7,6 @@ export function bloodTypeFunc(type) {
     case 'AB':
       return 3;
     case '0':
-    case 'O':
       return 4;
   }
 }

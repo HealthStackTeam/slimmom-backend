@@ -12,7 +12,7 @@ const calorieSchema = new Schema(
       required: true,
     },
     foods: {
-      type: String,
+      type: [String],
       required: true,
     },
   },

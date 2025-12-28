@@ -9,7 +9,7 @@ export const createCalorieSchema = Joi.object({
 
   targetWeight: Joi.number().positive().min(0).max(400).required(),
 
-  bloodType: Joi.string().valid('A', 'B', 'AB', 'O').required(),
+  bloodType: Joi.string().valid('A', 'B', 'AB', '0').required(),
 
   gender: Joi.string().valid('male', 'female').required(),
 });

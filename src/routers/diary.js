@@ -18,13 +18,13 @@ const router = Router();
 
 router.use(authenticate);
 
-router.get(
+router.post(
   '/',
   validateBody(getDiarySchema),
   ctrlWrapper(getDailyFoodController),
 );
 router.post(
-  '/',
+  '/add',
   validateBody(createDiarySchema),
   ctrlWrapper(addDailyFoodController),
 );
