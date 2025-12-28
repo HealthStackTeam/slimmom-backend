@@ -1,13 +1,4 @@
-import { getProductsBlood, getSearchProducts } from '../services/products.js';
-
-export const getProductsBloodController = async (req, res, next) => {
-  const data = await getProductsBlood();
-  res.json({
-    status: 200,
-    message: 'Successfully',
-    data: data,
-  });
-};
+import { getSearchProducts } from '../services/products.js';
 
 export const getProductsController = async (req, res, next) => {
   const search = req.query.search;

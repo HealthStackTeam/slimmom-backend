@@ -25,11 +25,9 @@ export const setCaloriePrivateController = async (req, res, next) => {
 
   const foods = await getProductsBlood(bloodTypeFunc(bloodType));
 
-  const foodsArray = JSON.parse(JSON.stringify(foods)).flatMap(
+  const foodTitles = JSON.parse(JSON.stringify(foods)).map(
     (food) => food.title,
   );
-  const foodTitles = foodsArray.join(', ');
-
   const calorie = calorieCalculator(weight, height, targetWeight, age, gender);
 
   await addCalorieUser({
@@ -54,7 +52,7 @@ export const getCaloriePrivateController = async (req, res, next) => {
 
   res.json({
     status: 200,
-    message: ``,
+    message: `Successfully`,
     data: data,
   });
 };
