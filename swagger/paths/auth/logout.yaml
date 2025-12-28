@@ -1,0 +1,21 @@
+post:
+  tags:
+  - Auth
+  summary: Logout user
+  operationId: logoutUser
+  security:
+  - {}
+  responses:
+    '204':
+      description: User logged out
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string

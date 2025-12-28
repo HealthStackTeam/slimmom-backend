@@ -1,0 +1,31 @@
+type: object
+description: Schema representing product information.
+properties:
+  _id:
+    type: string
+    description: Unique identifier of the product
+  title:
+    type: string
+    description: Product name
+  weight:
+    type: number
+    description: Product weight (grams)
+  calories:
+    type: number
+    description: Calories per 100 grams
+  category:
+    type: string
+    description: Product category
+  groupBloodNotAllowed:
+    type: array
+    description: Blood groups that should avoid this product
+    items:
+      type: integer
+      description: Blood group (1, 2, 3, 4)
+required:
+  - _id
+  - title
+  - weight
+  - calories
+  - category
+  - groupBloodNotAllowed

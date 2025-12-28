@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import { env } from './utils/env.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
+import { swaggerDocs } from './middlewares/swaggerDocs.js';
 import router from './routers/index.js';
 
 const PORT = Number(env('PORT', '3000'));
@@ -52,6 +53,9 @@ export const startServer = () => {
       timestamp: new Date().toISOString(),
     });
   });
+
+  // Swagger UI route (should be before 404 and error handlers)
+  app.use('/api-docs', swaggerDocs());
 
   // API routes
   app.use(router);

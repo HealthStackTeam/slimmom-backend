@@ -1,0 +1,72 @@
+post:
+  tags:
+  - Auth
+  summary: Login user
+  operationId: loginUser
+  security:
+  - {}
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/LoginUser.yaml'
+  responses:
+    '200':
+      description: User logged in
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/LoginUser.yaml
+    '400':
+      description: Invalid login data (missing or malformed fields)
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              error:
+                type: string
+              message:
+                type: string
+    '401':
+      description: Invalid credentials (wrong email or password)
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              error:
+                type: string
+              message:
+                type: string
+    '403':
+      description: Forbidden (user blocked or not allowed)
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              error:
+                type: string
+              message:
+                type: string
+    '404':
+      description: User not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              error:
+                type: string
+              message:
+                type: string

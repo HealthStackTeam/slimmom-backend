@@ -1,0 +1,56 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Students app
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: >
+    This is a documentation of students app
+tags:
+  - name: Students
+    description: Operations about users.
+  - name: Auth
+    description: Auth operations.
+servers:
+  - url: https://slimmom-backend-h150.onrender.com
+    description: Production server
+  - url: http://localhost:3000
+    description: Local server
+paths:
+  /auth/register:
+    $ref: ../swagger/paths/auth/register.yaml
+  /auth/login:
+    $ref: ../swagger/paths/auth/login.yaml
+  /auth/logout:
+    $ref: ../swagger/paths/auth/logout.yaml
+  /auth/refresh:
+    $ref: ../swagger/paths/auth/refresh.yaml
+  /calories/public:
+    $ref: ../swagger/paths/calorie/public.yaml
+  /calories/private:
+    $ref: ../swagger/paths/calorie/private.yaml
+  /diary:
+    $ref: ../swagger/paths/diary/index.yaml
+  /diary/add:
+    $ref: ../swagger/paths/diary/add.yaml
+  /products:
+    $ref: ../swagger/paths/products/index.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    RegisterUser:
+      $ref: ../swagger/components/schemas/RegisterUser.yaml
+    LoginUser:
+      $ref: ../swagger/components/schemas/LoginUser.yaml
+    CalorieRequest:
+      $ref: ../swagger/components/schemas/CalorieRequest.yaml
+    GetDiary:
+      $ref: ../swagger/components/schemas/GetDiary.yaml
+    AddDiary:
+      $ref: ../swagger/components/schemas/AddDiary.yaml
+    DeleteDiary:
+      $ref: ../swagger/components/schemas/DeleteDiary.yaml

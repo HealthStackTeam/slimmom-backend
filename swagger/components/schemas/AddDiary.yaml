@@ -1,0 +1,13 @@
+type: object
+properties:
+  date:
+    type: string
+    format: date
+  productId:
+    type: string
+  amount:
+    type: number
+required:
+  - date
+  - productId
+  - amount

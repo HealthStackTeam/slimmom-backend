@@ -1,0 +1,31 @@
+post:
+  tags:
+    - Calories
+  summary: Calculate public calories
+  operationId: calculatePublicCalories
+  security:
+    []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/CalorieRequest.yaml'
+  responses:
+    '200':
+      description: Calories calculated
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/CalorieRequest.yaml
+    '400':
+      description: Invalid input data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string

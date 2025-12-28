@@ -1,0 +1,31 @@
+        post:
+          tags:
+            - Auth
+          summary: Register a new user
+          operationId: registerUser
+          security:
+            []
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  $ref: '../../components/schemas/RegisterUser.yaml'
+          responses:
+            '201':
+              description: User registered
+              content:
+                application/json:
+                  schema:
+                    $ref: ../../components/schemas/RegisterUser.yaml
+            '400':
+              description: Invalid registration data
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                      message:
+                        type: string
