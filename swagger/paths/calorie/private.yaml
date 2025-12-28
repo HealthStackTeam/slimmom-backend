@@ -1,0 +1,89 @@
+post:
+  tags:
+    - Calories
+  summary: Set private calories
+  operationId: setPrivateCalories
+  security:
+    - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/CalorieRequest.yaml'
+  responses:
+    '200':
+      description: Private calories set
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/CalorieRequest.yaml'
+    '400':
+      description: Invalid input data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string
+    '404':
+      description: Private calories not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string
+get:
+  tags:
+    - Calories
+  summary: Get private calories
+  operationId: getPrivateCalories
+  security:
+    - bearerAuth: []
+  responses:
+    '200':
+      description: Private calories fetched
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/CalorieRequest.yaml
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string
+    '404':
+      description: Private calories not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string

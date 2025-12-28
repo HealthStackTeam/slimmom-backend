@@ -1,0 +1,101 @@
+post:
+  tags:
+    - Diary
+  summary: Get daily food
+  operationId: getDailyFood
+  security:
+    - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/GetDiary.yaml'
+  responses:
+    '200':
+      description: Daily food fetched
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string
+              data:
+                type: object
+                properties:
+                  diary:
+                    type: array
+                    items:
+                      type: object
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string
+    '404':
+      description: Diary not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string
+delete:
+  tags:
+    - Diary
+  summary: Delete daily food
+  operationId: deleteDailyFood
+  security:
+    - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/DeleteDiary.yaml'
+  responses:
+    '200':
+      description: Daily food deleted
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string
+    '404':
+      description: Diary not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string

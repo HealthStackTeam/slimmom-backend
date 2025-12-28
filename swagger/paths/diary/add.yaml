@@ -1,0 +1,54 @@
+post:
+  tags:
+    - Diary
+  summary: Add daily food
+  operationId: addDailyFood
+  security:
+    - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/AddDiary.yaml'
+  responses:
+    '200':
+      description: Daily food added
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string
+              data:
+                type: object
+                properties:
+                  diary:
+                    type: array
+                    items:
+                      type: object
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string
+    '400':
+      description: Invalid input data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string

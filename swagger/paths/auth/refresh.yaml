@@ -1,0 +1,25 @@
+  get:
+    tags:
+      - Auth
+    summary: Refresh user session
+    operationId: refreshUserSession
+    security:
+      []
+    responses:
+      '200':
+        description: Session refreshed
+        content:
+          application/json:
+            schema:
+              $ref: ../../components/schemas/SessionRefreshed.yaml
+      '401':
+        description: Invalid or expired refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: integer
+                message:
+                  type: string

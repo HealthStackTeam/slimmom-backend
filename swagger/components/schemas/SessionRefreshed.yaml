@@ -1,0 +1,27 @@
+type: object
+description: Kullanıcı oturumu yenilendiğinde dönen veri yapısı.
+properties:
+  token:
+    type: string
+    description: Yeni JWT erişim token'ı
+  refreshToken:
+    type: string
+    description: Yeni refresh token
+  user:
+    type: object
+    description: Kullanıcı bilgileri
+    properties:
+      email:
+        type: string
+        format: email
+        description: Kullanıcının e-posta adresi
+      name:
+        type: string
+        description: Kullanıcının adı
+      id:
+        type: string
+        description: Kullanıcı ID'si
+required:
+  - token
+  - refreshToken
+  - user

@@ -1,3 +1,6 @@
+import path from 'path';
+export const SWAGGER_PATH = path.join(process.cwd(), 'docs', 'swagger.json');
+
 // HTTP Status Codes
 export const HTTP_STATUS = {
   OK: 200,

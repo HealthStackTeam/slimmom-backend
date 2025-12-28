@@ -1,0 +1,28 @@
+type: object
+properties:
+  height:
+    type: number
+    description: Height (cm)
+  weight:
+    type: number
+    description: Weight (kg)
+  age:
+    type: number
+    description: Age
+  targetWeight:
+    type: number
+    description: Target weight (kg)
+  gender:
+    type: string
+    enum: [male, female]
+    description: Gender
+  bloodType:
+    type: integer
+    description: Blood type (1-4)
+required:
+  - height
+  - weight
+  - age
+  - targetWeight
+  - gender
+  - bloodType
