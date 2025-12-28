@@ -17,7 +17,21 @@ export const startServer = () => {
 
   app.use(cookieParser());
 
-  app.use(cors());
+  app.use(
+    cors({
+      origin: (origin, callback) => {
+        if (!origin || origin.includes('localhost')) {
+          callback(null, true);
+        } else {
+          callback(
+            null,
+            ['http://slimmom-frontend.vercel.app'].includes(origin),
+          );
+        }
+      },
+      credentials: true,
+    }),
+  );
 
   // logger middleware
   app.use(

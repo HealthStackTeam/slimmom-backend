@@ -16,6 +16,8 @@ export const registerUserController = async (req, res) => {
     password: req.body.password,
   });
 
+  setupSession(res, session);
+
   res.status(201).json({
     status: 201,
     message: 'User registered successfully!',
@@ -33,10 +35,14 @@ export const loginUserController = async (req, res) => {
   res.cookie('refreshToken', session.refreshToken, {
     httpOnly: true,
     expires: new Date(Date.now() + TIMER.ONE_DAY),
+    sameSite: 'none',
+    secure: true,
   });
   res.cookie('sessionId', session._id, {
     httpOnly: true,
     expires: new Date(Date.now() + TIMER.ONE_DAY),
+    sameSite: 'none',
+    secure: true,
   });
 
   res.json({
@@ -64,10 +70,14 @@ const setupSession = (res, session) => {
   res.cookie('refreshToken', session.refreshToken, {
     httpOnly: true,
     expires: new Date(Date.now() + TIMER.ONE_DAY),
+    sameSite: 'none',
+    secure: true,
   });
   res.cookie('sessionId', session._id, {
     httpOnly: true,
     expires: new Date(Date.now() + TIMER.ONE_DAY),
+    sameSite: 'none',
+    secure: true,
   });
 };
 
