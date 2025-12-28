@@ -15,23 +15,20 @@ export const startServer = () => {
 
   app.use(express.json());
 
-  app.use(cookieParser());
-
   app.use(
     cors({
-      origin: (origin, callback) => {
-        if (!origin || origin.includes('localhost')) {
-          callback(null, true);
-        } else {
-          callback(
-            null,
-            ['http://slimmom-frontend.vercel.app'].includes(origin),
-          );
-        }
-      },
+      origin: [
+        'https://slimmom-frontend.vercel.app',
+        'http://localhost:5173',
+        'http://localhost:3000',
+      ],
       credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
     }),
   );
+
+  app.use(cookieParser());
 
   // logger middleware
   app.use(
