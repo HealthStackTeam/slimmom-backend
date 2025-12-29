@@ -1,29 +1,18 @@
 import { DiaryCollection } from '../db/models/diaries.js';
-import { getSearchIdProduct } from '../services/products.js';
 
 export const getProductsUser = async (payload) => {
   const productList = await DiaryCollection.find(payload);
-  const products = await Promise.all(
-    productList.map(async ({ _id, date, weight, productId }) => {
-      const product = await getSearchIdProduct(productId.valueOf());
-      return {
-        ...{ _id, date, weight },
-        product,
-      };
-    }),
-  );
-
-  return products;
+  return productList;
 };
 
 export const addProductUser = async (payload) => {
   const product = await DiaryCollection.findOneAndUpdate(
     {
       date: payload.date,
-      productId: payload.productId,
+      product: payload.product,
       userId: payload.userId,
     },
-    { $inc: { weight: payload.weight } },
+    { $inc: { weight: payload.weight, calories: payload.calories } },
     {
       upsert: true,
       new: true,
