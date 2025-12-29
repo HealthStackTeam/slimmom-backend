@@ -2,10 +2,8 @@ import { Schema, model } from 'mongoose';
 
 const diarySchema = new Schema(
   {
-    product: {
-      type: Object,
-      ref: 'product',
-      required: true,
+    productId: {
+      type: Schema.Types.ObjectId,
     },
     weight: {
       type: Number,
@@ -13,10 +11,6 @@ const diarySchema = new Schema(
     },
     date: {
       type: String,
-      required: true,
-    },
-    calories: {
-      type: Number,
       required: true,
     },
     userId: {
