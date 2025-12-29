@@ -28,7 +28,8 @@ export const addDailyFoodController = async (req, res, next) => {
 };
 
 export const delDailyFoodController = async (req, res, next) => {
-  const { dailyId } = req.body;
+  const dailyId = req.query.search;
+
   const userId = req.user.id;
 
   const food = await delProductUser(dailyId, userId);
