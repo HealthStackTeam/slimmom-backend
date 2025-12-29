@@ -1,7 +1,18 @@
 import { DiaryCollection } from '../db/models/diaries.js';
+import { getSearchIdProduct } from '../services/products.js';
 
 export const getProductsUser = async (payload) => {
-  const products = await DiaryCollection.find(payload);
+  const productList = await DiaryCollection.find(payload);
+  const products = await Promise.all(
+    productList.map(async ({ _id, date, weight, productId }) => {
+      const product = await getSearchIdProduct(productId.valueOf());
+      return {
+        ...{ _id, date, weight },
+        product,
+      };
+    }),
+  );
+
   return products;
 };
 
