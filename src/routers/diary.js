@@ -29,7 +29,7 @@ router.post(
   ctrlWrapper(addDailyFoodController),
 );
 router.delete(
-  '/',
+  '/:dailyId',
   validateBody(delDiarySchema),
   ctrlWrapper(delDailyFoodController),
 );
