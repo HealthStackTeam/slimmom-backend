@@ -24,6 +24,7 @@ export const registerUserController = async (req, res) => {
     data: {
       user,
       accessToken: session.accessToken,
+      accessTokenValidUntil: session.accessTokenValidUntil,
     },
   });
 };
@@ -51,6 +52,7 @@ export const loginUserController = async (req, res) => {
     data: {
       user,
       accessToken: session.accessToken,
+      accessTokenValidUntil: session.accessTokenValidUntil,
     },
   });
 };
@@ -113,6 +115,7 @@ export const refreshUserSessionController = async (req, res) => {
     data: {
       user,
       accessToken: session.accessToken,
+      accessTokenValidUntil: session.accessTokenValidUntil,
     },
   });
 };
