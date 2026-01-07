@@ -67,7 +67,7 @@ Welcome to the **Slimmom Backend API**! This project powers the backend of the S
 
 ## 📖 API Documentation
 
-- [Swagger UI](./docs/index.html) — Interactive API docs
+- [Swagger UI](https://slimmom-backend-h150.onrender.com/api-docs/) — Interactive API docs
 - [OpenAPI Spec](./docs/openapi.yaml)
 - [Redocly](./redocly.yaml)
 
@@ -120,4 +120,4 @@ This project is licensed under the MIT License.
 
 ---
 
-> Made with ❤️ by the Slimmom Team
+> Made with ❤️ by the HealthStack Team
